@@ -13,7 +13,7 @@ export default class PersonRemove extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.delete(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
+    API.delete(`users/${this.state.id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
