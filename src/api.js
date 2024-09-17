@@ -1,5 +1,4 @@
 import axios from 'axios';
-import api from '../api'; // could do this but its outside src so cant
 
 const instance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com', // api url
@@ -8,3 +7,4 @@ const instance = axios.create({
 });
 
 export default instance;
+
