@@ -1,13 +1,17 @@
-import PersonList from './components/PersonList';
+import React from 'react';
 import PersonAdd from './components/PersonAdd';
+import PersonList from './components/PersonList';
 import PersonRemove from './components/PersonRemove';
 
-function App() {
+const App = () => {
   return (
-    <div ClassName="App">
-      <PersonAdd/>
-      <PersonList/>
-      <PersonRemove/>
+    <div>
+      <h1>Axios IN Detail</h1>
+      <PersonAdd />
+      <PersonList />
+      <PersonRemove />
     </div>
-  )
-}
+  );
+};
+
+export default App;

@@ -1,40 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export default class PersonAdd extends React.Component {
-  state = {
-    name: ''
-  }
+const PersonAdd = () => {
+  const [name, setName] = useState('');
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user = {
-      name: this.state.name
-    };
-
-    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('https://jsonplaceholder.typicode.com/users', { name })
+      .then((response) => {
+        console.log('Person added:', response.data);
       })
-  }
+      .catch((error) => {
+        console.error('There was an error adding the person!', error);
+      });
+  };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Person Name:
-            <input type="text" name="name" onChange={this.handleChange} />
-          </label>
-          <button type="submit">Add</button>
-        </form>
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      <h2>Add Person</h2>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter name"
+        />
+        <button type="submit">Add Person</button>
+      </form>
+    </div>
+  );
+};
+
+export default PersonAdd;

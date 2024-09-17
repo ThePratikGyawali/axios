@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default class PersonList extends React.Component {
-  state = {
-    persons: []
-  }
+const PersonList = () => {
+  const [persons, setPersons] = useState([]);
 
-  componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        const persons = res.data;
-        this.setState({ persons });
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        setPersons(response.data);
       })
-  }
+      .catch((error) => {
+        console.error('There was an error fetching the persons!', error);
+      });
+  }, []);
 
-  render() {
-    return (
+  return (
+    <div>
+      <h2>Person List</h2>
       <ul>
-        {
-          this.state.persons
-            .map(person =>
-              <li key={person.id}>{person.name}</li>
-            )
-        }
+        {persons.map((person) => (
+          <li key={person.id}>{person.name}</li>
+        ))}
       </ul>
-    )
-  }
-}
+    </div>
+  );
+};
+
+export default PersonList;
