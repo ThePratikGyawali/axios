@@ -13,7 +13,7 @@ const App = () => {
       <PersonAdd />
       <PersonList />
       <PersonRemove />
-      <Weather /> {/* Add the Weather component here */}
+      <Weather />
     </div>
   );
 };
