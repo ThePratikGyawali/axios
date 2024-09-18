@@ -1,16 +1,21 @@
+// src/components/PersonAdd.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const PersonAdd = () => {
   const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('https://jsonplaceholder.typicode.com/users', { name })
       .then((response) => {
-        console.log('Person added:', response.data);
+        setMessage('Person added successfully!');
+        setName('');
       })
       .catch((error) => {
+        setMessage('There was an error adding the person!');
         console.error('There was an error adding the person!', error);
       });
   };
@@ -26,6 +31,7 @@ const PersonAdd = () => {
           placeholder="Enter name"
         />
         <button type="submit">Add Person</button>
+        {message && <p>{message}</p>}
       </form>
     </div>
   );

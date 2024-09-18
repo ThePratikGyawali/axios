@@ -10,7 +10,7 @@ const Weather = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeatherMap API key
+        const apiKey = '359c9d244d1ad95bd537b1dc01073965'; // Replace with your OpenWeatherMap API key
         const city = 'Toronto'; // City for which to fetch the weather
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
